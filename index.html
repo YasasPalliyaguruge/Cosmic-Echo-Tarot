@@ -1,0 +1,122 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cosmic Echo Tarot</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+      body {
+        font-family: 'Inter', sans-serif;
+      }
+      h1, h2, h3, h4, h5, h6 {
+        font-family: 'Cormorant Garamond', serif;
+      }
+      /* Animations */
+      @keyframes nebula {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+      }
+      .bg-nebula {
+        background: linear-gradient(270deg, #000000, #1a0f3c, #3d2286, #000000);
+        background-size: 600% 600%;
+        animation: nebula 30s ease infinite;
+      }
+
+      @keyframes shimmer {
+        0% { background-position: 0% 0% }
+        100% { background-position: 135% 135% }
+      }
+      .bg-crystal {
+        background-image: linear-gradient(135deg,
+            hsl(300deg 89% 96%) 0%,
+            hsl(289deg 89% 96%) 8%,
+            hsl(273deg 89% 95%) 17%,
+            hsl(251deg 88% 95%) 25%,
+            hsl(224deg 88% 95%) 33%,
+            hsl(199deg 88% 95%) 42%,
+            hsl(178deg 88% 95%) 50%,
+            hsl(159deg 89% 95%) 58%,
+            hsl(139deg 89% 96%) 67%,
+            hsl(111deg 89% 96%) 75%,
+            hsl(74deg 89% 96%) 83%,
+            hsl(42deg 90% 96%) 92%,
+            hsl(20deg 90% 97%) 100%
+        );
+        background-size: 400% 400%;
+        animation: shimmer 15s linear infinite;
+      }
+
+      @keyframes fade-in-up {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .animate-fade-in-up {
+        animation: fade-in-up 0.6s ease-out forwards;
+        opacity: 0;
+      }
+      
+      @keyframes fireflies {
+        0% { transform: translateY(0) translateX(0); opacity: 0.5; }
+        50% { transform: translateY(-300px) translateX(100px); opacity: 1; }
+        100% { transform: translateY(-600px) translateX(-50px); opacity: 0; }
+      }
+      
+      @keyframes glint {
+        0%, 100% { transform: scale(1.0) rotate(-45deg); opacity: 0; }
+        50% { transform: scale(1.5) rotate(-45deg); opacity: 0.5; }
+      }
+
+      @keyframes sun-flare {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+      }
+      
+      @keyframes caustic-light {
+        0% { background-position: 0% 0%; }
+        25% { background-position: 25% 50%; }
+        50% { background-position: 50% 100%; }
+        75% { background-position: 25% 50%; }
+        100% { background-position: 0% 0%; }
+      }
+
+      @keyframes twinkle {
+        0%, 100% { opacity: 0; }
+        50% { opacity: 0.8; }
+      }
+
+      @keyframes subtle-rotate {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
+      }
+
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "react": "https://aistudiocdn.com/react@^19.2.0",
+    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.29.1",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/"
+  }
+}
+</script>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+  <body class="bg-slate-900 text-slate-200">
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+  </body>
+</html>

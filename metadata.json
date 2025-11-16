@@ -1,0 +1,5 @@
+{
+  "name": "Cosmic Echo Tarot",
+  "description": "A modern, AI-powered Tarot card reading web application that provides insightful and personalized readings using Gemini. Select a spread, draw your cards, and receive a deep, narrative interpretation of your past, present, and future.",
+  "requestFramePermissions": []
+}
