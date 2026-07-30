@@ -1,20 +1,25 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# Cosmic Echo Tarot
 
-# Run and deploy your AI Studio app
+![Cosmic Echo Tarot project cover](assets/recruiter/cover.png)
 
-This contains everything you need to run your app locally.
+> **Portfolio lens:** A private, browser-first reflective experience that pairs a rich visual ritual with intentionally local journal data.
 
-View your app in AI Studio: https://ai.studio/apps/drive/1AhtIMT1ZZ4yj7Pwe9hEnH-HCVCN_Jp3i
+Cosmic Echo Tarot is a small, browser-first tarot-reading experience. Pick a spread, draw cards, ask Aura follow-up questions, listen to the generated reading, and keep private reflections in the local journal.
 
-## Run Locally
+The reading, speech, chat, and optional card-image tools use Gemini. Journal entries, theme choices, and card-back preferences stay in the browser's local storage; this repository does not provide an account system or a server-side journal.
 
-**Prerequisites:**  Node.js
+## Local run
 
+```bash
+npm install
+```
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+Create `.env.local` beside `package.json`:
+
+```env
+GEMINI_API_KEY=your_key
+```
+
+Then start Vite with `npm run dev`. Use `npm run build` to produce the deployable bundle and `npm run preview` to inspect that bundle locally.
+
+The Vite setup makes the Gemini key available to the client application. Use a tightly restricted key and never commit `.env.local`.
