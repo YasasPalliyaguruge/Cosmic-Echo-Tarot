@@ -45,7 +45,6 @@ Please provide a thoughtful, well-structured, and integrated reading.
         return "There was an error generating your reading. The cosmos seems to be a bit fuzzy right now. Please try again later.";
     }
 };
-
 export const generateSpeech = async (text: string): Promise<string> => {
     if (!text || text.trim() === '') {
         throw new Error("Cannot generate speech from empty text.");
@@ -99,63 +98,5 @@ export const generateCardImage = async (prompt: string): Promise<string> => {
     } catch (error) {
         console.error("Error generating card image with Gemini:", error);
         throw new Error("Failed to generate card image.");
-    }
-};
-
-// FIX: Added 'generateImage' function to resolve import error. This uses 'imagen-4.0-generate-001' to support aspect ratio control in the Image Studio.
-export const generateImage = async (prompt: string, aspectRatio: string): Promise<string> => {
-    try {
-        const response = await ai.models.generateImages({
-            model: 'imagen-4.0-generate-001',
-            prompt: prompt,
-            config: {
-              numberOfImages: 1,
-              outputMimeType: 'image/png',
-              aspectRatio: aspectRatio,
-            },
-        });
-
-        if (response.generatedImages && response.generatedImages.length > 0 && response.generatedImages[0].image.imageBytes) {
-             const base64ImageBytes: string = response.generatedImages[0].image.imageBytes;
-             return base64ImageBytes;
-        }
-        
-        throw new Error("No image data received from API.");
-    } catch (error) {
-        console.error("Error generating image with Gemini:", error);
-        throw new Error("Failed to generate image.");
-    }
-};
-
-// FIX: Added 'editImage' function to resolve import error for the Image Studio feature.
-export const editImage = async (base64ImageData: string, mimeType: string, prompt: string): Promise<string> => {
-    try {
-        const imagePart = {
-            inlineData: {
-                data: base64ImageData,
-                mimeType: mimeType,
-            },
-        };
-        const textPart = { text: prompt };
-
-        const response: GenerateContentResponse = await ai.models.generateContent({
-            model: 'gemini-2.5-flash-image',
-            contents: { parts: [imagePart, textPart] },
-            config: {
-                responseModalities: [Modality.IMAGE],
-            },
-        });
-
-        for (const part of response.candidates[0].content.parts) {
-            if (part.inlineData) {
-                const base64ImageBytes: string = part.inlineData.data;
-                return base64ImageBytes;
-            }
-        }
-        throw new Error("No edited image data received from API.");
-
-    } catch (error) {
-        console.error("Error editing image with Gemini:", error);
-        throw new Error("Failed to edit image.");
     }
 };
