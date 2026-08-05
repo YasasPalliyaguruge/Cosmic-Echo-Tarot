@@ -1,6 +1,6 @@
 declare global {
   interface Window {
-    marked?: { parse: (markdown: string) => string };
+    marked: { parse: (markdown: string) => string };
   }
 }
 
