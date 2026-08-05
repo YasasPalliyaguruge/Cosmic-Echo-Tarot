@@ -2,12 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import type { Chat } from '@google/genai';
 import { createAuraChat } from '../services/geminiService';
 import { ChatMessage, Theme } from '../types';
-
-declare global {
-  interface Window {
-    marked: { parse: (markdown: string) => string };
-  }
-}
+import { renderSafeMarkdown } from '../utils/safeMarkdown';
 
 interface ChatViewProps {
   onClose: () => void;
@@ -165,7 +160,7 @@ const ChatView: React.FC<ChatViewProps> = ({
                   <div
                     className="prose prose-sm prose-invert max-w-none text-sm prose-p:my-0"
                     dangerouslySetInnerHTML={{
-                      __html: window.marked.parse(message.text),
+                      __html: renderSafeMarkdown(message.text),
                     }}
                   />
                 ) : (
