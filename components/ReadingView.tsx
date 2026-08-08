@@ -8,7 +8,6 @@ import {
   Theme,
 } from '../types';
 import { tarotDeck } from '../data/tarotDeck';
-import { generateSpeech, getTarotReading } from '../services/geminiService';
 import { renderSafeMarkdown } from '../utils/safeMarkdown';
 import AudioPlayer from './AudioPlayer';
 import SaveJournalModal from './SaveJournalModal';
@@ -65,6 +64,7 @@ const ReadingView: React.FC<ReadingViewProps> = ({
 
     setIsGeneratingAudio(true);
     try {
+      const { generateSpeech } = await import('../services/geminiService');
       setAudioData(await generateSpeech(text));
     } catch {
       setAudioData(null);
@@ -80,6 +80,7 @@ const ReadingView: React.FC<ReadingViewProps> = ({
     setError('');
 
     try {
+      const { getTarotReading } = await import('../services/geminiService');
       const result = await getTarotReading(spread, drawnCards);
       setReading(result);
       void generateAndSetAudio(result);
