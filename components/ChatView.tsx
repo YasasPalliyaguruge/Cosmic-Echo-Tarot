@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
 import type { Chat } from '@google/genai';
-import { createAuraChat } from '../services/geminiService';
 import { ChatMessage, Theme } from '../types';
 import { renderSafeMarkdown } from '../utils/safeMarkdown';
 
@@ -45,6 +44,7 @@ const ChatView: React.FC<ChatViewProps> = ({
       setError(null);
 
       try {
+        const { createAuraChat } = await import('../services/geminiService');
         const chat = createAuraChat();
         chatRef.current = chat;
 
