@@ -10,6 +10,8 @@ interface ChatViewProps {
   theme: Theme;
 }
 
+const MAX_CHAT_MESSAGE_LENGTH = 1000;
+
 const configurationMessage = (error: unknown): string => {
   if (
     error instanceof Error &&
@@ -200,7 +202,8 @@ const ChatView: React.FC<ChatViewProps> = ({
               id="aura-chat-input"
               type="text"
               value={input}
-              onChange={(event) => setInput(event.target.value)}
+              maxLength={MAX_CHAT_MESSAGE_LENGTH}
+              onChange={(event) => setInput(event.target.value.slice(0, MAX_CHAT_MESSAGE_LENGTH))}
               placeholder="Ask about your reading..."
               className="w-full bg-transparent p-3 focus:outline-none"
               disabled={isLoading || !chatRef.current}
@@ -222,6 +225,9 @@ const ChatView: React.FC<ChatViewProps> = ({
               </svg>
             </button>
           </div>
+          <p className="mt-1 text-right text-xs text-slate-400">
+            {input.length}/{MAX_CHAT_MESSAGE_LENGTH}
+          </p>
         </form>
       </div>
     </div>
